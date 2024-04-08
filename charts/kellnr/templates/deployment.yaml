@@ -57,13 +57,13 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-          {{- if eq .Values.kellnr.log.level "debug" }}
-          - name: RUST_BACKTRACE
-            value: "1"
-          {{- end }}
-          {{- if .Values.extraEnv }}
-          {{- toYaml .Values.extraEnv | indent 12 }}
-          {{- end }}
+            {{- if eq .Values.kellnr.log.level "debug" }}
+            - name: RUST_BACKTRACE
+              value: "1"
+            {{- end }}
+            {{- with .Values.extraEnv }}
+            {{- tpl . $ | nindent 12 }}
+            {{- end }}
           envFrom:
             - configMapRef:
                 name: {{ .Values.configMap.name | quote }}

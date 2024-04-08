@@ -14,7 +14,7 @@ imagePullSecrets: []
 nameOverride: "kellnr"
 fullnameOverride: "kellnr"
 
-extraEnv: []
+extraEnv: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
