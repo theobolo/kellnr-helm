@@ -66,33 +66,33 @@ Check the [documentation](https://kellnr.io/documentation) and the [values.yaml]
 
 Settings to configure the web-ui/API endpoint service and the crate index service.
 
-| Setting                | Required | Description                                                   | Default   |
-| ---------------------- | -------- | ------------------------------------------------------------- | --------- |
-| service.api.type       | No       | Type of the service that exports the API and web-ui endpoint. | ClusterIP |
-| service.api.port       | No       | Port of the service that exports the API and web-ui endpoint. | 80        |
+| Setting          | Required | Description                                                   | Default   |
+| ---------------- | -------- | ------------------------------------------------------------- | --------- |
+| service.api.type | No       | Type of the service that exports the API and web-ui endpoint. | ClusterIP |
+| service.api.port | No       | Port of the service that exports the API and web-ui endpoint. | 80        |
 
 ### Ingress
 
 Setting to configure the ingress route for the web-ui and API.
 
-| Setting             | Required | Description                                      | Default |
-| ------------------- | -------- | ------------------------------------------------ | ------- |
-| ingress.enabled     | No       | Enable an Kubernetes ingress route for _Kellnr_. | true    |
-| ingress.className   | No       | Set an ingress className.                        | ""      |
-| ingress.annotations | No       | Set ingress annotations.                         | {}      |
-| ingress.tls.secretName | No   | Set the secret name for a TLS certificate         | kellnr-cert-secret |
+| Setting                | Required | Description                                      | Default            |
+| ---------------------- | -------- | ------------------------------------------------ | ------------------ |
+| ingress.enabled        | No       | Enable an Kubernetes ingress route for _Kellnr_. | true               |
+| ingress.className      | No       | Set an ingress className.                        | ""                 |
+| ingress.annotations    | No       | Set ingress annotations.                         | {}                 |
+| ingress.tls.secretName | No       | Set the secret name for a TLS certificate        | kellnr-cert-secret |
 
 ### TLS Certificate
 
 Settings to configure a TLS certificate with cert-manager. **Important** If you use _Kellnr_ with TLS,
 make sure to set `kellnr.apiProtocol` to `https`.
 
-| Setting | Required | Description | Default |
-| ---------------------- | -------- | ------------------------------------------------------------- | --------- |
-| certificate.enabled | No | Enable automatic TLS certificate generation with cert-mananger. | false |
-| certificate.secretName | No | The name of the certificate secret which an ingress can refer to. | kellnr-cert-secret |
-| certificate.issuerRef.kind | No | The kind of the certificate issuer, e.g. _ClusterIssuer_, or _Issuer_ | ClusterIssuer |
-| certificate.issuerRef.name | Yes (if enabled) | The name of the certificate issuer e.g. cert-manager | "" |
+| Setting                    | Required         | Description                                                           | Default            |
+| -------------------------- | ---------------- | --------------------------------------------------------------------- | ------------------ |
+| certificate.enabled        | No               | Enable automatic TLS certificate generation with cert-mananger.       | false              |
+| certificate.secretName     | No               | The name of the certificate secret which an ingress can refer to.     | kellnr-cert-secret |
+| certificate.issuerRef.kind | No               | The kind of the certificate issuer, e.g. _ClusterIssuer_, or _Issuer_ | ClusterIssuer      |
+| certificate.issuerRef.name | Yes (if enabled) | The name of the certificate issuer e.g. cert-manager                  | ""                 |
 
 ### Trust a Certificate
 
@@ -103,13 +103,13 @@ root certificate.
 
 If you use a self-signed certificate that is not trusted by default, you can import it into _Kellnr_ on application startup.
 
-| Setting | Required | Description | Default |
-| ---------------------- | -------- | ------------------------------------------------------------- | --------- |
-| importCert.enabled | No | Enable the import of a root certificate to trust | false |
-| importCert.useExisting | No | If you have an existing _ConfigMap_ that contains a certificate, set this flag to _true_, else a new _ConfigMap_ is created.  | false |
-| importCert.configMapName | No | Set the name of the created or existing _ConfigMap_ to use. | "kellnr-cert" |
-| importCert.volumeName | No | The volume name under which the _ConfigMap_ is mounted into the pod. | "kellnr-cert-storage" |
-| importCert.certificate | No | The certificate to trust in the standard PEM format. See example below. | "" |
+| Setting                  | Required | Description                                                                                                                  | Default               |
+| ------------------------ | -------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| importCert.enabled       | No       | Enable the import of a root certificate to trust                                                                             | false                 |
+| importCert.useExisting   | No       | If you have an existing _ConfigMap_ that contains a certificate, set this flag to _true_, else a new _ConfigMap_ is created. | false                 |
+| importCert.configMapName | No       | Set the name of the created or existing _ConfigMap_ to use.                                                                  | "kellnr-cert"         |
+| importCert.volumeName    | No       | The volume name under which the _ConfigMap_ is mounted into the pod.                                                         | "kellnr-cert-storage" |
+| importCert.certificate   | No       | The certificate to trust in the standard PEM format. See example below.                                                      | ""                    |
 
 Example for `importCert.certificate`:
 
@@ -134,12 +134,12 @@ You can set DNS servers for _Kellnr_ which should be used instead of the default
 
 > Kellnr needs to be able to resolve it's own domain name, to be able to generate Rustdocs automatically.
 
-| Setting | Required | Description | Default |
-| ---------------------- | -------- | ------------------------------------------------------------- | --------- |
-| dns.enabled | No | Enable an additional _dnsPolicy_ | false |
-| dns.dnsPolicy | No | Set the _dnsPolicy_ | "None" |
-| dns.dnsConfig.nameservers | No | List of nameservers to use. | - "" |
-| dns.dnsConfig.searches | No | List of searches to use. | - "" |
+| Setting                   | Required | Description                      | Default |
+| ------------------------- | -------- | -------------------------------- | ------- |
+| dns.enabled               | No       | Enable an additional _dnsPolicy_ | false   |
+| dns.dnsPolicy             | No       | Set the _dnsPolicy_              | "None"  |
+| dns.dnsConfig.nameservers | No       | List of nameservers to use.      | - ""    |
+| dns.dnsConfig.searches    | No       | List of searches to use.         | - ""    |
 
 ### Persistence
 
@@ -150,7 +150,7 @@ A _PersistentVolume_ can be created for _Kellnr_ to hold all stored data.
 | pv.enabled          | No               | Enable a _PersistentVolume_ to store the data from _Kellnr_        | false   |
 | pv.name             | No               | Name of the _PersistentVolume_                                     | kellnr  |
 | pv.storageClassName | No               | storageClassName of the _PersistentVolume_                         | manual  |
-| pv.storage          | No               | Size of the storage.                                               | 5Gi   |
+| pv.storage          | No               | Size of the storage.                                               | 5Gi     |
 | pv.path             | Yes (if enabled) | Host path to the storage. Needs to exists before the PV is created | ""      |
 
 A _PersistentVolumeClaim_ can be used by _Kellnr_ to hold all stored data.
@@ -160,7 +160,7 @@ A _PersistentVolumeClaim_ can be used by _Kellnr_ to hold all stored data.
 | pvc.enabled          | No       | Enable a _PersistentVolumeClaim_ to store the data from _Kellnr_ | false   |
 | pvc.name             | No       | Name of the _PersistentVolumeClaim_                              | kellnr  |
 | pvc.storageClassName | No       | storageClassName of the _PersistentVolumeClaim_                  | manual  |
-| pvc.storage          | No       | Size of the storage.                                             | 5Gi   |
+| pvc.storage          | No       | Size of the storage.                                             | 5Gi     |
 
 For a full set of possible variables see: [values.yaml](./charts/kellnr/values.yaml)
 
