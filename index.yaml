@@ -9,6 +9,6 @@ entries:
     name: kellnr
     type: application
     urls:
-    - https://theobolo.github.io/kellnr-helm/kellnr-3.2.2.tgz
+    - https://github.com/theobolo/kellnr-helm/releases/download/kellnr-3.2.2/kellnr-3.2.2.tgz
     version: 3.2.2
 generated: "2024-04-08T11:26:51.2933019+02:00"
